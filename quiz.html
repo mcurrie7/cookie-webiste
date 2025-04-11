@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookies in Web Tech</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Cookies in Web Technology</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="subtopic1.html">Cookie Uses</a></li>
+        <li><a href="subtopic2.html">Privacy & Security</a></li>
+        <li><a href="references.html">References</a></li>
+      </ul>
+    </nav>
+  </header> 
+  <h2>Quiz: What Have You Learned About Cookies?</h2>
+<form id="quizForm">
+  <ol>
+    <li>
+      What is a web cookie?<br>
+      <input type="radio" name="q1" value="a"> A type of dessert<br>
+      <input type="radio" name="q1" value="b"> A file stored by a website on a user’s computer ✅<br>
+      <input type="radio" name="q1" value="c"> A coding language<br>
+    </li><br>
+
+    <li>
+      Cookies can be used for which of the following? (Select all that apply)<br>
+      <input type="checkbox" name="q2" value="a"> Remember login sessions ✅<br>
+      <input type="checkbox" name="q2" value="b"> Display personalized ads ✅<br>
+      <input type="checkbox" name="q2" value="c"> Make smoothies<br>
+    </li><br>
+
+    <li>
+      Who can access cookies?<br>
+      <input type="radio" name="q3" value="a"> Only the user<br>
+      <input type="radio" name="q3" value="b"> Only the original website ✅<br>
+      <input type="radio" name="q3" value="c"> Everyone on the internet<br>
+    </li><br>
+
+    <li>
+      Fill in the blank: Cookies are stored on your ________.<br>
+      <input type="text" name="q4"><br>
+    </li><br>
+
+    <li>
+      What type of cookie tracks users across multiple websites?<br>
+      <input type="radio" name="q5" value="a"> Session cookie<br>
+      <input type="radio" name="q5" value="b"> Tracking cookie ✅<br>
+      <input type="radio" name="q5" value="c"> Chocolate chip cookie<br>
+    </li><br>
+  </ol>
+
+  <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+  <button type="reset">Restart</button>
+</form>
+
+<div id="result"></div>
+<script>function checkAnswers() {
+    let score = 0;
+    let resultText = "";
+  
+    // Q1
+    let q1 = document.querySelector('input[name="q1"]:checked');
+    if (q1 && q1.value === "b") score++;
+    resultText += "<p>Q1 Answer: " + (q1 ? q1.value : "No answer") + "</p>";
+  
+    // Q2 (Checkbox, two correct: a & b)
+    let q2 = document.querySelectorAll('input[name="q2"]:checked');
+    let selectedQ2 = Array.from(q2).map(i => i.value);
+    let correctQ2 = selectedQ2.includes("a") && selectedQ2.includes("b") && selectedQ2.length === 2;
+    if (correctQ2) score++;
+    resultText += "<p>Q2 Answer: " + selectedQ2.join(", ") + "</p>";
+  
+    // Q3
+    let q3 = document.querySelector('input[name="q3"]:checked');
+    if (q3 && q3.value === "b") score++;
+    resultText += "<p>Q3 Answer: " + (q3 ? q3.value : "No answer") + "</p>";
+  
+    // Q4 (Text)
+    let q4 = document.querySelector('input[name="q4"]').value.trim().toLowerCase();
+    if (q4 === "computer") score++;
+    resultText += "<p>Q4 Answer: " + q4 + "</p>";
+  
+    // Q5
+    let q5 = document.querySelector('input[name="q5"]:checked');
+    if (q5 && q5.value === "b") score++;
+    resultText += "<p>Q5 Answer: " + (q5 ? q5.value : "No answer") + "</p>";
+  
+    // Results
+    let total = 5;
+    let pass = score >= 3 ? "✅ You passed!" : "❌ You did not pass.";
+    document.getElementById("result").innerHTML =
+      `<h3>Score: ${score}/${total}</h3>` + resultText + `<h3>${pass}</h3>`;
+  }
+  </script>
+</main>
+</body>
+</html>
